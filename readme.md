@@ -1,7 +1,8 @@
 ##### Setup using pipenv
 
 Check python version
-> python --version #Python 3.10.11
+> python --version -> Python 3.10.11
+
 > pipenv --python 3.10.11
 
 
