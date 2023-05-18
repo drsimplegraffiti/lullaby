@@ -3,7 +3,7 @@ from config.extensions import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify
 from flask_jwt_extended import create_access_token, set_access_cookies
-from utils.verification_generator import generate_verification_code
+from utils.verification_generator import generate_verification_code, generate_reset_token
 
 
 def signup_controller(username, email, password, otp):
@@ -112,3 +112,44 @@ def resend_verification_code_controller(email):
         return None
     
 
+# forgot password
+def forgot_password_controller(email):
+    try:
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            return jsonify({
+                'message': 'User does not exist'
+            }), 404
+
+        #generate token link for password reset
+        reset_token = generate_reset_token()
+        user.reset_token = reset_token
+        print({user.reset_token})
+        db.session.add(user)
+        db.session.commit()
+        link = "http://localhost:3000/reset-password/" + reset_token
+        return link
+    except Exception as e:
+        print(f"An error occurred during forgot password: {str(e)}")
+        return None
+
+# reset password
+def reset_password_controller(reset_token, password):
+    try:
+        user = User.query.filter_by(reset_token=reset_token).first()
+        if not user:
+            return jsonify({
+                'message': 'User does not exist'
+            }), 404
+
+        # Hash password
+        hash_password = generate_password_hash(password)
+        user.password = hash_password
+        user.reset_token = None
+        db.session.add(user)
+        db.session.commit()
+        print(f"User {user.id} password reset successfully")
+        return user
+    except Exception as e:
+        print(f"An error occurred during password reset: {str(e)}")
+        return None

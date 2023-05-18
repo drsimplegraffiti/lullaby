@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from controllers.auth_controller import signup_controller, login_controller, verify_user_controller, resend_verification_code_controller
+from controllers.auth_controller import signup_controller, login_controller, verify_user_controller, resend_verification_code_controller, forgot_password_controller, reset_password_controller
 from models.users import User
 from validation.auth_validation import SignupSchema, loginSchema, verifyEmailSchema
 from utils.email_sender import send_email
@@ -154,3 +154,60 @@ def resend_route():
             'error': error_message
         }), 500
     
+# forgot password route forgot_password_controller
+
+
+@auth.route('/forgot-password', methods=['POST'])
+def forgot_password_route():
+    try:
+        data = request.get_json()
+        email = data['email']
+        response_link = forgot_password_controller(email)
+        if response_link:
+            #send email
+            subject = 'Forgot Password'
+            html_template = Template(
+                Path('templates/password_reset.html').read_text())
+            html_content = html_template.substitute(
+                {'username': email, 'reset_token_link': response_link})
+            send_email(subject, email, html_content)
+            return jsonify({
+                'message': 'Verification code sent successfully'
+            }), 200
+
+        else:
+            return jsonify({
+                'message': 'User not found'
+            }), 404
+    except Exception as e:
+        error_message = f"An error occurred during forgot password: {str(e)}"
+        print(error_message)
+        return jsonify({
+            'message': 'An error occurred during forgot password',
+            'error': error_message
+        }), 500
+
+# reset password route reset_password_controller
+
+
+@auth.route('/reset-password/<reset_token>', methods=['POST'])
+def reset_password_route(reset_token):
+    try:
+        data = request.get_json(force=True)
+        password = data['password']
+        response = reset_password_controller(reset_token, password)
+        if response:
+            return jsonify({
+                'message': 'Password reset successfully'
+            }), 200
+        else:
+            return jsonify({
+                'message': 'Reset password failed'
+            }), 401
+    except Exception as e:
+        error_message = f"An error occurred during reset password: {str(e)}"
+        print(error_message)
+        return jsonify({
+            'message': 'An error occurred during reset password',
+            'error': error_message
+        }), 500

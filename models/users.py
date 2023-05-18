@@ -11,6 +11,7 @@ class User(db.Model):
     is_verified = db.Column(db.Boolean, default=False)
     is_active = db.Column(db.Boolean, default=True)
     user_role = db.Column(db.String(64), default='user')
+    reset_token = db.Column(db.String(255), nullable=True)
     verification_code = db.Column(db.String(6), nullable=True)
 
 
@@ -22,7 +23,8 @@ class User(db.Model):
             'profile_image': self.profile_image,
             'is_verified': self.is_verified,
             'is_active': self.is_active,
-            'user_role': self.user_role
+            'user_role': self.user_role,
+            'reset_token': self.reset_token,
             
         }
 

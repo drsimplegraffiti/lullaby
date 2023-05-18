@@ -46,10 +46,12 @@ Add profile_image as blob to users table
 ALTER TABLE users ADD profile_image BLOB;
 ```
 
-Add is_verified, verification_code, is_active, user_role to users table
+Add is_verified, verification_code, is_active, user_role, reset_token to users table
 ```sql
 ALTER TABLE users ADD is_verified BOOLEAN DEFAULT FALSE;
 ALTER TABLE users ADD verification_code VARCHAR(255);
 ALTER TABLE users ADD is_active BOOLEAN DEFAULT TRUE;
 ALTER TABLE users ADD user_role VARCHAR(255) DEFAULT 'user';
+ALTER TABLE users ADD reset_token VARCHAR(255);
+```
 ```
