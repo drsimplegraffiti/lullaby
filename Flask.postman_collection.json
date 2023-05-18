@@ -1,0 +1,627 @@
+{
+	"info": {
+		"_postman_id": "85017dc2-a660-4bfd-b491-abf14c25b95e",
+		"name": "Flask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15544476",
+		"_collection_link": "https://lunar-shuttle-830387.postman.co/workspace/My-Workspace~5f5aa68b-3004-49aa-891f-2b4eef2fecf8/collection/15544476-85017dc2-a660-4bfd-b491-abf14c25b95e?action=share&creator=15544476&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"mimi@gmail.com\",\r\n    \"username\":\"mimi\",\r\n    \"password\":\"admin1234\"\r\n}   ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200-Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"mimi@gmail.com\",\r\n    \"username\":\"mimi\",\r\n    \"password\":\"admin1234\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.3.4 Python/3.10.11"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 17 May 2023 23:35:29 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "230"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"email\": \"mimi@gmail.com\",\n        \"id\": 5,\n        \"is_active\": true,\n        \"is_verified\": false,\n        \"profile_image\": null,\n        \"user_role\": \"user\",\n        \"username\": \"mimi\"\n    }\n}"
+				},
+				{
+					"name": "409 - Conflict",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"mimi@gmail.com\",\r\n    \"username\":\"mimi\",\r\n    \"password\":\"admin1234\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"status": "CONFLICT",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.3.4 Python/3.10.11"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 17 May 2023 23:36:58 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User already exists\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"timi@gmail.com\",\r\n    \"password\":\"admin1234\"\r\n}   ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200-success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"mimi@gmail.com\",\r\n    \"password\":\"admin1234\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.3.4 Python/3.10.11"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 17 May 2023 23:35:32 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "386"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "access_token_cookie=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDM2NjUzMiwianRpIjoiZjU2YmYxZDItNGFmMC00YmQ3LTk3NmEtYzA0MTNmZDI3NzY2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6NSwidXNlcm5hbWUiOiJtaW1pIiwiZW1haWwiOiJtaW1pQGdtYWlsLmNvbSJ9LCJuYmYiOjE2ODQzNjY1MzIsImV4cCI6MTY4NDM2NzQzMn0.ZNGyBeqDi3AUsLpRVhNQP4HhtzC6jw4U-J0-WtIvvR0; HttpOnly; Path=/"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDM2NjUzMiwianRpIjoiZjU2YmYxZDItNGFmMC00YmQ3LTk3NmEtYzA0MTNmZDI3NzY2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6NSwidXNlcm5hbWUiOiJtaW1pIiwiZW1haWwiOiJtaW1pQGdtYWlsLmNvbSJ9LCJuYmYiOjE2ODQzNjY1MzIsImV4cCI6MTY4NDM2NzQzMn0.ZNGyBeqDi3AUsLpRVhNQP4HhtzC6jw4U-J0-WtIvvR0\",\n    \"message\": \"Login successful\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Verify_user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDM2NjIyNCwianRpIjoiOWRmNjdmNjQtOWVmZS00M2EwLThmYzYtMjQ4ODE5MzNmMjMyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6MywidXNlcm5hbWUiOiJ0aW1pIiwiZW1haWwiOiJ0aW1pQGdtYWlsLmNvbSJ9LCJuYmYiOjE2ODQzNjYyMjQsImV4cCI6MTY4NDM2NzEyNH0.ItAz7Js9Y5g4zQg7GslBk2y5Kw4isEawzkQSaWhACeo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"timi@gmail.com\",\r\n    \"verification_code\":\"118445\"\r\n}   ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/auth/verify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"auth",
+						"verify"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"mimi@gmail.com\",\r\n    \"verification_code\":\"373809\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/auth/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.3.4 Python/3.10.11"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 17 May 2023 23:35:53 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User verified successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Resend Verification Code",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDM2NzAzMCwianRpIjoiNjMyMTNlY2UtNWQ5YS00ZjAyLWIxNGYtNThkMGI2ZmI1NTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6NiwidXNlcm5hbWUiOiJtaW1pIiwiZW1haWwiOiJtaW1pQGdtYWlsLmNvbSJ9LCJuYmYiOjE2ODQzNjcwMzAsImV4cCI6MTY4NDM2NzkzMH0.ciVLSFv4IBV1z3VphSC6It0Ygt05xWeEg8W9pp4JveA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"mimi@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/auth/resend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"auth",
+						"resend"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"mimi@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/auth/resend",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"auth",
+								"resend"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.3.4 Python/3.10.11"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 May 2023 00:10:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Verification code sent successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Forgot password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"mimi@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/auth/forgot-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"auth",
+						"forgot-password"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"mimi@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/auth/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.3.4 Python/3.10.11"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 May 2023 00:44:34 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Verification code sent successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Reset password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\":\"mimi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/auth/reset-password/:reset_token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"auth",
+						"reset-password",
+						":reset_token"
+					],
+					"variable": [
+						{
+							"key": "reset_token",
+							"value": "6TGiEcgvzfiJUuumfJbIESUK93EjcEOhdJVuO0gmDeTolv3twXrBCvQQ1JGa_YsRuVXyxlYnjFDbigMK5mFJg8uS73iAhj0jBl21eFgxJ8O9UXGNbUgzVT7w_pYTGEtwYoqWuo-GqhG86T7t7glHLZ7vHy-rZp"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"mimi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/auth/reset-password/:reset_token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"auth",
+								"reset-password",
+								":reset_token"
+							],
+							"variable": [
+								{
+									"key": "reset_token",
+									"value": "6TGiEcgvzfiJUuumfJbIESUK93EjcEOhdJVuO0gmDeTolv3twXrBCvQQ1JGa_YsRuVXyxlYnjFDbigMK5mFJg8uS73iAhj0jBl21eFgxJ8O9UXGNbUgzVT7w_pYTGEtwYoqWuo-GqhG86T7t7glHLZ7vHy-rZp"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.3.4 Python/3.10.11"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 May 2023 01:04:14 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Password reset successfully\"\n}"
+				}
+			]
+		}
+	]
+}
