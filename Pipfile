@@ -4,12 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
 flask-sqlalchemy = "*"
 flask-jwt-extended = "*"
 mysqlclient = "*"
 python-dotenv = "*"
 marshmallow = "*"
+flask = {extras = ["async"], version = "*"}
 
 [dev-packages]
 

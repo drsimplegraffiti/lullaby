@@ -24,19 +24,20 @@ Check python version
 
 
 ```sql
-  create table users(
-  id SERIAL PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    profile_image BLOB,
-    is_verified BOOLEAN DEFAULT FALSE,
-    verification_code VARCHAR(255),
-    is_active BOOLEAN DEFAULT TRUE,
-    user_role VARCHAR(255) DEFAULT 'user',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    )
+ CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  profile_image BLOB,
+  is_verified BOOLEAN DEFAULT FALSE,
+  verification_code VARCHAR(255),
+  is_active BOOLEAN DEFAULT TRUE,
+  user_role VARCHAR(255) DEFAULT 'user',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
 
     
 ```
@@ -54,4 +55,17 @@ ALTER TABLE users ADD is_active BOOLEAN DEFAULT TRUE;
 ALTER TABLE users ADD user_role VARCHAR(255) DEFAULT 'user';
 ALTER TABLE users ADD reset_token VARCHAR(255);
 ```
+
+
+#### Blogs table
+```sql
+CREATE TABLE blogs (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  body TEXT NOT NULL,
+  user_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
 ```

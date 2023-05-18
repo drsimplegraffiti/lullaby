@@ -8,6 +8,7 @@ from error.error_handler import handle_not_found_error, handle_internal_server_e
 # import routes
 from routes.health import health
 from routes.auth_routes import auth
+from routes.blog_routes import blog
 
 def create_app():
     load_dotenv()
@@ -27,6 +28,7 @@ def create_app():
 
     #mount routes
     app.register_blueprint(auth, url_prefix='/api/auth')
+    app.register_blueprint(blog, url_prefix='/api/blog')
     app.register_blueprint(health)
 
     #register error handlers
