@@ -153,3 +153,22 @@ def reset_password_controller(reset_token, password):
     except Exception as e:
         print(f"An error occurred during password reset: {str(e)}")
         return None
+    
+
+# update profile_image
+def update_profile_image_controller(user_id, profile_image):
+    try:
+        user = User.query.filter_by(id=user_id).first()
+        if not user:
+            return jsonify({
+                'message': 'User does not exist'
+            }), 404
+
+        user.profile_image = profile_image
+        db.session.add(user)
+        db.session.commit()
+        print(f"User {user.id} profile image updated successfully")
+        return user
+    except Exception as e:
+        print(f"An error occurred during profile image update: {str(e)}")
+        return None

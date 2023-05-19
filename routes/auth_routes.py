@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from controllers.auth_controller import signup_controller, login_controller, verify_user_controller, resend_verification_code_controller, forgot_password_controller, reset_password_controller
+from controllers.auth_controller import signup_controller, login_controller, verify_user_controller, resend_verification_code_controller, forgot_password_controller, reset_password_controller, update_profile_image_controller
 from models.users import User
 from validation.auth_validation import SignupSchema, loginSchema, verifyEmailSchema
 from utils.email_sender import send_email
@@ -7,6 +7,9 @@ from string import Template
 from pathlib import Path
 from utils.verification_generator import generate_verification_code
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from werkzeug.utils import secure_filename
+from utils.files_to_allow import allowed_file
+import os
 
 auth = Blueprint('auth', __name__)
 
@@ -209,5 +212,47 @@ def reset_password_route(reset_token):
         print(error_message)
         return jsonify({
             'message': 'An error occurred during reset password',
+            'error': error_message
+        }), 500
+
+# update_profile_image_controller
+
+
+@auth.route('/update-profile-image', methods=['POST'])
+@jwt_required()
+def update_profile_image_route():
+    try:
+        user = get_jwt_identity()
+        print(user)
+        if 'profile_image' not in request.files:
+            return jsonify({
+                'message': 'No file part in the request'
+            }), 400
+        file = request.files['profile_image']
+        if file.filename == '':
+            return jsonify({
+                'message': 'No file selected for uploading'
+            }), 400
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join("./uploads", filename))
+            response = update_profile_image_controller(user['id'], filename)
+            if response:
+                return jsonify({
+                    'message': f'Profile image updated successfully, image url: {filename}',
+                }), 200
+            else:
+                return jsonify({
+                    'message': 'Profile image update failed'
+                }), 401
+        else:
+            return jsonify({
+                'message': 'Allowed file types are txt, pdf, png, jpg, jpeg, gif'
+            }), 400
+    except Exception as e:
+        error_message = f"An error occurred during update profile image: {str(e)}"
+        print(error_message)
+        return jsonify({
+            'message': 'An error occurred during update profile image',
             'error': error_message
         }), 500
