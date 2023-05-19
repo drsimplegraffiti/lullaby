@@ -235,7 +235,8 @@ def update_profile_image_route():
             }), 400
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join("./uploads", filename))
+            file.save(os.path.join("./uploads", filename)
+                      )  # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             response = update_profile_image_controller(user['id'], filename)
             if response:
                 return jsonify({
